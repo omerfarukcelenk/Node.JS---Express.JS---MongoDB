@@ -9,9 +9,21 @@ const hostname = '127.0.0.1';
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload')
 const generateDate = require('./helpers/generateDate').generateDate
+const expressSession = require('express-session')
+var MongoStore = require ('connect-mongo');
 
 
 mongoose.connect('mongodb://127.0.0.1/nodeblog_db', { useNewUrlParser: true, useUnifiedTopology: true });
+
+
+
+
+app.use(expressSession({
+  secret: 'testotesto',
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1/nodeblog_db' })
+}))
 
 app.use(fileUpload())
 
@@ -33,7 +45,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 const nyMiddleware = (req, res, next) => {
-  console.log('Benim Adım Ömer')
   next()
 }
 
