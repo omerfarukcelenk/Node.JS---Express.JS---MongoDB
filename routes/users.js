@@ -10,7 +10,11 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
     User.create(req.body, (err, user) => {
-        res.redirect('/')
+        req.session.sessionFlash = {
+            type: 'alert alert-success',
+            message : 'Kullanıcı başarılı bir şekilde oluşturuldu'
+        }
+        res.redirect('/users/login')
     })
     
 }
@@ -36,6 +40,13 @@ router.post('/login', (req, res) => {
         } else {
             res.redirect('/users/register')
         }
+    })
+}
+)
+
+router.get('/logut', (req, res) => {
+    req.session.destroy(()=>{
+        res.redirect('/')
     })
 }
 )

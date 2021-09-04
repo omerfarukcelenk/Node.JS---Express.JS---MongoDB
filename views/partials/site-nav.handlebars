@@ -13,23 +13,35 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/admin">admin</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/blog">Blog</a>
                 </li>
+                {{#if displayLink}}
                 <li class="nav-item">
                     <a class="nav-link" href="/posts/new">Add Post</a>
                 </li>
+                {{/if}}
+
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
+                {{#unless displayLink}}
                 <li class="nav-item">
                     <a class="nav-link" href="/users/login">Log In</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/users/register">Register</a>
                 </li>
+                {{/unless}}
+                {{#if displayLink}}
+
+                 <li class="nav-item">
+                    <a class="nav-link" href="/users/logut">Log out</a>
+                </li>
+                {{/if}}
+
             </ul>
         </div>
     </div>
